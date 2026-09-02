@@ -547,17 +547,28 @@ private:
       #define G29_TYPE void
     #endif
     static G29_TYPE G29();
+  
   #else
-    static void G29();
+  
+  // BALTA
+  static void G29();
+  
   #endif
 
   #if HAS_BED_PROBE
+    static void G30();
     #if ENABLED(Z_PROBE_SLED)
       static void G31();
       static void G32();
     #endif
-  #endif
+    
+  #else
+  
+  // BALTA
   static void G30();
+  
+  #endif
+ 
 
   #if ENABLED(DELTA_AUTO_CALIBRATION)
     static void G33();
