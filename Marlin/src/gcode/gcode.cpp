@@ -367,7 +367,7 @@ void GcodeSuite::dwell(millis_t time) {
       return;
     }
 
-    const float x_inicial_mm = parser.floatval('X');
+    const float x_inicial_mm = parser.floatval('X') + Planner::correccion_acumulada_x;
     const float y_inicial_mm = parser.floatval('Y');
     const float encoder_inicial = parser.floatval('A');
     const float encoder_inicial2 = parser.floatval('B');
@@ -610,7 +610,6 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 5: M5(); break;                                      // M5: Turn OFF Laser | Spindle
       #else
         // BALTA
-        // Agregué este comando para poder reanudar la impresora
         case 3: M3(); break;
         case 4: M4(); break;
       #endif
